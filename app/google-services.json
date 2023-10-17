@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "6082320011",
+    "project_id": "ecostore-21953",
+    "storage_bucket": "ecostore-21953.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:6082320011:android:f449f0db1302c79c7aa68e",
+        "android_client_info": {
+          "package_name": "com.example.ecostore"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQCYLigk2wulpD65vAx7ixzLFWHQnMaU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
