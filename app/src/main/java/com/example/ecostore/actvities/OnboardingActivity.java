@@ -1,4 +1,4 @@
-package com.example.ecostore;
+package com.example.ecostore.actvities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -7,13 +7,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.ecostore.R;
+import com.example.ecostore.adapter.SliderAdapter;
 
 public class OnboardingActivity extends AppCompatActivity {
 
