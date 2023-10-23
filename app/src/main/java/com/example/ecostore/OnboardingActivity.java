@@ -3,6 +3,7 @@ package com.example.ecostore;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -45,6 +46,13 @@ public class OnboardingActivity extends AppCompatActivity {
 
         sliderAdapter = new SliderAdapter(this);
         viewPager.setAdapter(sliderAdapter);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(OnboardingActivity.this, RegistrationActivity.class));
+                finish();
+            }
+        });
     }
 
     public  void  addDots(int position){
