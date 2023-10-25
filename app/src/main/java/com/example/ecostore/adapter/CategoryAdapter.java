@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ecostore.R;
 import com.example.ecostore.models.CategoryModel;
 
@@ -31,7 +32,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        Glide.with(context).load(list.get(position).getImg_url()).into(holder.catImg);
+        holder.catName.setText(list.get(position).getName());
     }
 
     @Override
