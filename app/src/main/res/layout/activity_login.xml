@@ -30,7 +30,7 @@
         android:background="@drawable/edit_text_bg"
         android:drawableLeft="@drawable/ic_baseline_account_circle"
         android:elevation="3dp"
-        android:hint="Email"
+        android:hint="Emails"
         android:padding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
