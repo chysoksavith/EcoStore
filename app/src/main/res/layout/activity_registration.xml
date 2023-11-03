@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".actvities.RegistrationActivity"
-    android:background="@drawable/designlogin2">
+    tools:context=".actvities.RegistrationActivity">
 
     <TextView
         android:id="@+id/textView"

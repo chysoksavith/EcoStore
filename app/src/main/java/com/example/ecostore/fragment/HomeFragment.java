@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,8 +20,10 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.ecostore.R;
 import com.example.ecostore.adapter.CategoryAdapter;
 import com.example.ecostore.adapter.NewProductsAdapter;
+import com.example.ecostore.adapter.PopularProductAdapter;
 import com.example.ecostore.models.CategoryModel;
 import com.example.ecostore.models.NewProductsModel;
+import com.example.ecostore.models.PopularProductModel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,7 +36,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    RecyclerView cateRecyclerview,newProductRecyclerview;
+    RecyclerView cateRecyclerview,newProductRecyclerview,popularRecyclerview;
 
     //Fetch Category recyView
     CategoryAdapter categoryAdapter;
@@ -43,6 +46,10 @@ public class HomeFragment extends Fragment {
     //New product
     NewProductsAdapter newProductsAdapter;
     List<NewProductsModel> newProductsModelList;
+
+    // popular product
+    PopularProductAdapter popularProductAdapter;
+    List<PopularProductModel> popularProductModelList;
 
     //fIREBASE
     FirebaseFirestore db ;
@@ -60,6 +67,7 @@ public class HomeFragment extends Fragment {
 
         cateRecyclerview = root.findViewById(R.id.rec_category);
         newProductRecyclerview = root.findViewById(R.id.new_product_rec);
+        popularRecyclerview = root.findViewById(R.id.popular_rec);
 
         db = FirebaseFirestore.getInstance();
         // for image slider
@@ -124,7 +132,31 @@ public class HomeFragment extends Fragment {
                         }
                     }
                 });
+        // popular prodcut
+        popularRecyclerview.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        popularProductModelList = new ArrayList<>();
+        popularProductAdapter = new PopularProductAdapter(getContext(), popularProductModelList);
+        popularRecyclerview.setAdapter(popularProductAdapter);
 
+        db.collection("AllProducts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Clear the list to prevent duplicates
+                            popularProductModelList.clear();
+
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                PopularProductModel popularProductModel = document.toObject(PopularProductModel.class);
+                                popularProductModelList.add(popularProductModel);
+                            }
+                            popularProductAdapter.notifyDataSetChanged();
+                        } else {
+                            Toast.makeText(getActivity(), "Error: " + task.getException(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
         return root;
     }
 }
