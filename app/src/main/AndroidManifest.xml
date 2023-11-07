@@ -15,12 +15,11 @@
         android:theme="@style/Theme.EcoStore"
         tools:targetApi="31">
         <activity
+            android:name=".adapter.DetailedActivity"
+            android:exported="false" />
+        <activity
             android:name=".actvities.OnboardingActivity"
-            android:exported="false">
-
-        </activity>
-
-
+            android:exported="false"></activity>
         <activity
             android:name=".actvities.RegistrationActivity"
             android:exported="true">
@@ -30,7 +29,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".actvities.LoginActivity"
             android:exported="false" />
