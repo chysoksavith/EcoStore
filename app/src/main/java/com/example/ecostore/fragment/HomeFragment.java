@@ -1,5 +1,6 @@
 package com.example.ecostore.fragment;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +13,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -36,6 +39,8 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    LinearLayout linearLayout;
+    ProgressDialog progressDialog;
     RecyclerView cateRecyclerview,newProductRecyclerview,popularRecyclerview;
 
     //Fetch Category recyView
@@ -64,13 +69,16 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View root =  inflater.inflate(R.layout.fragment_home, container, false);
 
-
+        progressDialog = new ProgressDialog(getActivity());
         cateRecyclerview = root.findViewById(R.id.rec_category);
         newProductRecyclerview = root.findViewById(R.id.new_product_rec);
         popularRecyclerview = root.findViewById(R.id.popular_rec);
 
+
         db = FirebaseFirestore.getInstance();
         // for image slider
+        linearLayout = root.findViewById(R.id.home_layout);
+        linearLayout.setVisibility(View.GONE);
 
         ImageSlider imageSlider = root.findViewById(R.id.image_slider);
         List<SlideModel> slideModels = new ArrayList<>();
@@ -80,6 +88,11 @@ public class HomeFragment extends Fragment {
         slideModels.add(new SlideModel(R.drawable.banner3, "90% OFF", ScaleTypes.CENTER_CROP));
 
         imageSlider.setImageList(slideModels);
+
+        progressDialog.setTitle("Welcome To My Store Enjoy!");
+        progressDialog.setMessage("Please wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
 
 
         //category rec
@@ -99,6 +112,8 @@ public class HomeFragment extends Fragment {
                         CategoryModel categoryModel = document.toObject(CategoryModel.class);
                         categoryModelList.add(categoryModel);
                         categoryAdapter.notifyDataSetChanged();
+                        linearLayout.setVisibility(View.VISIBLE);
+                        progressDialog.dismiss();
                     }
                 }else {
                     Log.e("Firestore", "Error getting documents: ", task.getException());
