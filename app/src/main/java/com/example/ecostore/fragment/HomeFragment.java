@@ -1,6 +1,7 @@
 package com.example.ecostore.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.denzcoskun.imageslider.ImageSlider;
@@ -24,6 +26,7 @@ import com.example.ecostore.R;
 import com.example.ecostore.adapter.CategoryAdapter;
 import com.example.ecostore.adapter.NewProductsAdapter;
 import com.example.ecostore.adapter.PopularProductAdapter;
+import com.example.ecostore.adapter.ShowAllActivity;
 import com.example.ecostore.models.CategoryModel;
 import com.example.ecostore.models.NewProductsModel;
 import com.example.ecostore.models.PopularProductModel;
@@ -39,6 +42,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+    TextView catShowAll, popularShowAll, newProductShowAll;
     LinearLayout linearLayout;
     ProgressDialog progressDialog;
     RecyclerView cateRecyclerview,newProductRecyclerview,popularRecyclerview;
@@ -69,13 +73,41 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View root =  inflater.inflate(R.layout.fragment_home, container, false);
 
+        db = FirebaseFirestore.getInstance();
+
         progressDialog = new ProgressDialog(getActivity());
         cateRecyclerview = root.findViewById(R.id.rec_category);
         newProductRecyclerview = root.findViewById(R.id.new_product_rec);
         popularRecyclerview = root.findViewById(R.id.popular_rec);
+        catShowAll = root.findViewById(R.id.category_see_all);
+        popularShowAll = root.findViewById(R.id.popular_see_all);
+        newProductShowAll = root.findViewById(R.id.newProducts_see_all);
+
+        catShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+        newProductShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        popularShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), ShowAllActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
-        db = FirebaseFirestore.getInstance();
+
         // for image slider
         linearLayout = root.findViewById(R.id.home_layout);
         linearLayout.setVisibility(View.GONE);
