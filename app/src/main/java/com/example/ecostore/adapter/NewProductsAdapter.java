@@ -1,6 +1,7 @@
 package com.example.ecostore.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,16 @@ public class NewProductsAdapter extends RecyclerView.Adapter<NewProductsAdapter.
             Glide.with(context).load(item.getImg_url()).into(holder.newImg);
             holder.newName.setText(item.getName());
             holder.newPrice.setText(String.valueOf(item.getPrice()));
+
+            holder.itemView.setOnClickListener(new View.OnClickListener(){
+
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context,DetailedActivity.class);
+                    intent.putExtra("detailed", list.get(position));
+                    context.startActivity(intent);
+                }
+            });
         }
     }
     @Override

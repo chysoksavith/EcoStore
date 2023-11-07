@@ -47,6 +47,7 @@
                     android:fontFamily="@font/amethysta"
                     android:textSize="25sp"/>
                 <TextView
+                    android:id="@+id/rating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="4.0"
@@ -62,10 +63,11 @@
                     android:numStars="5"
                     android:stepSize="0.1"
                     style="?android:attr/ratingBarStyleSmall"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentRight="true"/>
 
             </RelativeLayout>
             <TextView
+
                 android:id="@+id/detailed_desc"
                 android:fontFamily="@font/amethysta"
                 android:layout_width="wrap_content"
@@ -119,7 +121,7 @@
                     android:layout_height="wrap_content"
                     android:text="1"
                     android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:textSize="20sp"/>
                 <ImageView
                     android:layout_marginLeft="7dp"
                     android:id="@+id/remove_item"
