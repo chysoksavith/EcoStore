@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.ecostore.R;
 import com.example.ecostore.models.NewProductsModel;
+import com.example.ecostore.models.PopularProductModel;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DetailedActivity extends AppCompatActivity {
@@ -21,6 +22,9 @@ public class DetailedActivity extends AppCompatActivity {
 
     // new products
     NewProductsModel newProductsModel = null;
+
+    // popular products
+    PopularProductModel popularProductModel = null;
     private FirebaseFirestore firestore;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,8 @@ public class DetailedActivity extends AppCompatActivity {
 
         if(obj instanceof NewProductsModel){
             newProductsModel = (NewProductsModel) obj;
+        }else  if (obj instanceof  PopularProductModel){
+            popularProductModel = (PopularProductModel) obj;
         }
 
         detailedImg = findViewById(R.id.detailed_img);
@@ -55,6 +61,15 @@ public class DetailedActivity extends AppCompatActivity {
             description.setText(newProductsModel.getDescription());
             price.setText(String.valueOf(newProductsModel.getPrice()));
             name.setText(newProductsModel.getName());
+        }
+        // popular products
+        if(popularProductModel != null){
+            Glide.with(getApplicationContext()).load(popularProductModel.getImg_url()).into(detailedImg);
+            name.setText(popularProductModel.getName());
+            rating.setText(popularProductModel.getRating());
+            description.setText(popularProductModel.getDescription());
+            price.setText(String.valueOf(popularProductModel.getPrice()));
+            name.setText(popularProductModel.getName());
         }
     }
 }

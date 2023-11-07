@@ -2,7 +2,9 @@ package com.example.ecostore.models;
 
 import com.google.firebase.firestore.PropertyName;
 
-public class PopularProductModel {
+import java.io.Serializable;
+
+public class PopularProductModel implements Serializable {
     @PropertyName("description")
     private String description;
     @PropertyName("img_url")
