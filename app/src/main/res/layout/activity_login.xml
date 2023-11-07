@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
+        android:fontFamily="@font/amethysta"
         android:text="Sign In"
         android:textColor="@color/textHeading"
         android:textSize="40sp"
